@@ -10,7 +10,7 @@
 		<div class="container py-3">
   			<?php include './estrutura/menu.php' ?>
 			<div class="badge bg-light text-black text-center" style="width: 100%; height: 60px">
-				<h1><i>Manutenção Cultivos</i></h1>
+				<h1><i>Manutenção de Cultivos</i></h1>
 			</div>						
 			<br>					
 			<br>
