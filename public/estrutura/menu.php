@@ -10,6 +10,7 @@
             <a class="me-3 py-2 text-dark text-decoration-none" href="/propriedade">Propriedade</a>
             <a class="me-3 py-2 text-dark text-decoration-none" href="/talhao">Talhão</a>
             <a class="me-3 py-2 text-dark text-decoration-none" href="/usuario">Usuário</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" href="/relatorios">Relatórios</a>
         </nav>
     </div>
 </header>

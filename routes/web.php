@@ -46,3 +46,10 @@ Route::prefix('plantio')->group(function () {
     Route::post('/save', [PlantioController::class, 'save']);
     Route::get('/remove', [PlantioController::class, 'remove']);
 });
+
+Route::prefix('relatorios')->group(function () {
+    Route::get('/', [RelatoriosController::class, 'index'])->name('relatorios');
+    Route::get('/cadastro', [RelatoriosController::class, 'cadastro']);
+    Route::post('/save', [RelatoriosController::class, 'save']);
+    Route::get('/remove', [RelatoriosController::class, 'remove']);
+});
