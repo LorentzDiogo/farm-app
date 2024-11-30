@@ -33,7 +33,7 @@ class PlantioBD extends Model
     public function salvar (Request $request) 
     {
         if(!empty($request->autoid)) {
-            $sqlUpdate = "Update plantio set plantio = '" . $request->talhao . "', TerrenoPlantado= '" . $request->terrenoplantado . "', Motivo = '" . $request->motivo ."',Cultivo = '" . $request->cultivo ."', Q_Semente_H = '" . $request->sementeporhectar . "', Q_Adubo_H = '" . $request->aduboporhectar . "', DataInicio = '" . $request->datainicio . "' Where AutoId = " . $request->autoid;					                              
+            $sqlUpdate = "Update plantio set talhao = '" . $request->talhao . "', TerrenoPlantado= '" . $request->terrenoplantado . "', Motivo = '" . $request->motivo ."',Cultivo = '" . $request->cultivo ."', Q_Semente_H = '" . $request->sementeporhectar . "', Q_Adubo_H = '" . $request->aduboporhectar . "', DataInicio = '" . $request->datainicio . "' Where AutoId = " . $request->autoid;					                              
         } else {
             $sqlUpdate = "INSERT INTO plantio (Talhao,TerrenoPlantado,Motivo,Cultivo,Q_Semente_H,Q_Adubo_H,DataInicio) VALUES ('".$request->talhao."', '".$request->terrenoplantado."', '".$request->motivo."', '".$request->cultivo."', '".$request->sementeporhectar."', '".$request->aduboporhectar."', '".$request->datainicio."')";
         }
