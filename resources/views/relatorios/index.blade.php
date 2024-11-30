@@ -31,8 +31,7 @@
 					<th>Kg de Semente Por Hectar</th>
 					<th>Kg de Adubo Por Hectar</th>
 					<th>DataInicio</th>
-					<th><div class="row"><div class="col-12 text-center">Opções</div></div></th>
-               	</tr>
+					
             </thead>
             <tbody>
             @foreach($resultado as $x)
@@ -46,20 +45,7 @@
 					<th>{{ $x->Q_Adubo_H }}</th>
 					<th>{{ $x->DataInicio }}</th>		
 					<td > 		
-						<div class="row">			
-							<div class="col-6 text-center">
-								<form action="/plantio/remove" method="get">
-									<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->Autoid); ?>"> 
-									<button onclick="return confirm('Tem certeza que deseja deletar este registro?')" type="submit" class="btn btn-danger">Excluir</button> 
-								</form>
-							</div>
-							<div class="col-6">
-								<form action="/relatorios/cadastro" method="get"> 
-									<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->Autoid); ?>">
-									<button type="submit" class="btn btn-warning">Alterar</button> 
-								</form>							
-							</div>
-						</div>
+						
 					</td>		   
               	</tr>
             @endforeach

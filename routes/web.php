@@ -6,7 +6,7 @@ use App\Http\Controllers\PropriedadeController;
 use App\Http\Controllers\TalhaoController;
 use App\Http\Controllers\CultivoController;
 use App\Http\Controllers\PlantioController;
-
+use App\Http\Controllers\RelatoriosController;
 
 Route::get('/', function () {
     return view('welcome');

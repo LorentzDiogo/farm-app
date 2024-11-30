@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class RelatoriosBD extends Model
 {
-    public function Relatorios () 
+    public function Relatorio () 
     {
         $sqlSelect = "SELECT p.Autoid, t.nome as Talhao, TerrenoPlantado, p.Motivo, 
         c.nome as Cultivo, p.Q_Semente_H, p.Q_Adubo_H,DATE_FORMAT(p.DataInicio, '%d/%m/%Y') AS DataInicio  
@@ -20,17 +20,16 @@ class RelatoriosBD extends Model
     	return $relatorios;
     }
     
-    public function find (string $autoid) 
+   /* public function find (string $autoid) 
     {
         if (!empty($autoid)){
             $sqlSelect = "SELECT * FROM plantio WHERE Autoid = " . $autoid;    	
             $relatorios = DB::connection('mysql')->select($sqlSelect);
                 
-            return $relatorios;
-        }
+            return $relatorios;//}
     }
 
-    public function salvar (Request $request) 
+   public function salvar (Request $request) 
     {
         if(!empty($request->autoid)) {
             $sqlUpdate = "Update plantio set talhao = '" . $request->talhao . "', TerrenoPlantado= '" . $request->terrenoplantado . "', Motivo = '" . $request->motivo ."',Cultivo = '" . $request->cultivo ."', Q_Semente_H = '" . $request->sementeporhectar . "', Q_Adubo_H = '" . $request->aduboporhectar . "', DataInicio = '" . $request->datainicio . "' Where AutoId = " . $request->autoid;					                              
@@ -46,6 +45,6 @@ class RelatoriosBD extends Model
             $sqlUpdate = "Delete FROM plantio WHERE Autoid = ". $request->autoid;
             return DB::connection('mysql')->update($sqlUpdate);					
         }
-    }
+    }*/
 }
 ?>
