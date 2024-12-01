@@ -13,12 +13,15 @@ class RelatoriosController extends Controller
         return 'OLA?';
     }
 
-    public function index()
-    {    
-        $relatoriosBDObj = new RelatoriosBD();
-        $resultado = $relatoriosBDObj->relatorio();
-        return view('relatorios.index',['resultado'=> $resultado]);
-    }
+    public function index(Request $request)
+{
+    $cultivo = $request->input('cultivo'); // Pega o valor do campo 'cultivo'
+    $relatoriosBDObj = new RelatoriosBD();
+    $resultado = $relatoriosBDObj->relatorio($cultivo); // Passa o cultivo para a função
+
+    return view('relatorios.index', ['resultado' => $resultado]);
+}
+
 
     public function cadastro(Request $request)
     {

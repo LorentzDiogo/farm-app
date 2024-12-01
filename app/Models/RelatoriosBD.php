@@ -8,17 +8,24 @@ use Illuminate\Http\Request;
 
 class RelatoriosBD extends Model
 {
-    public function Relatorio () 
-    {
-        $sqlSelect = "SELECT p.Autoid, t.nome as Talhao, TerrenoPlantado, p.Motivo, 
-        c.nome as Cultivo, p.Q_Semente_H, p.Q_Adubo_H,DATE_FORMAT(p.DataInicio, '%d/%m/%Y') AS DataInicio  
+    public function Relatorio($cultivo = null)
+{
+    $sqlSelect = "SELECT p.Autoid, t.nome as Talhao, TerrenoPlantado, p.Motivo, 
+        c.nome as Cultivo, p.Q_Semente_H, p.Q_Adubo_H, DATE_FORMAT(p.DataInicio, '%d/%m/%Y') AS DataInicio  
         FROM plantio as p 
-        inner join talhao as t on t.autoid = p.talhao
-        inner join cultivo as c on c.autoid = p.cultivo";    	
-    	$relatorios = DB::connection('mysql')->select($sqlSelect);
-    		
-    	return $relatorios;
+        INNER JOIN talhao as t ON t.autoid = p.talhao
+        INNER JOIN cultivo as c ON c.autoid = p.cultivo";
+
+    if (!empty($cultivo)) {
+        $sqlSelect .= " WHERE c.nome LIKE :cultivo"; // Adiciona o filtro no SQL
+        $relatorios = DB::connection('mysql')->select($sqlSelect, ['cultivo' => '%' . $cultivo . '%']);
+    } else {
+        $relatorios = DB::connection('mysql')->select($sqlSelect);
     }
+
+    return $relatorios;
+}
+
     
    /* public function find (string $autoid) 
     {
