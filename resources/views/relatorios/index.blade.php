@@ -13,10 +13,45 @@
             <h1><i>Relatórios</i></h1>
         </div>
 
-        <!-- Formulário de busca por cultivo -->
-        <form action="{{ route('relatorios') }}" method="GET" class="mb-3 d-flex">
-            <input type="text" name="cultivo" class="form-control me-2" placeholder="Digite o nome do cultivo">
-            <button type="submit" class="btn btn-primary">Buscar</button>
+        <!-- Formulário de busca -->
+        <form action="{{ route('relatorios') }}" method="GET" class="mb-3 row">
+            <div class="col-md-4">
+                <label for="cultivo" class="form-label">Cultivo</label>
+                <select name="cultivo" id="cultivo" class="form-select">
+                    <option value="">Selecione um cultivo</option>
+                    @foreach ($cultivos as $c)
+                        <option value="{{ $c->nome }}" {{ $cultivoSelecionado == $c->nome ? 'selected' : '' }}>
+                            {{ $c->nome }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="talhao" class="form-label">Talhão</label>
+                <select name="talhao" id="talhao" class="form-select">
+                    <option value="">Selecione um talhão</option>
+                    @foreach ($talhoes as $t)
+                        <option value="{{ $t->nome }}" {{ $talhaoSelecionado == $t->nome ? 'selected' : '' }}>
+                            {{ $t->nome }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="data_inicio" class="form-label">Data Início (De)</label>
+                <input type="date" name="data_inicio" id="data_inicio" class="form-control" value="{{ $dataInicioSelecionada }}">
+            </div>
+
+            <div class="col-md-2">
+                <label for="data_fim" class="form-label">Data Início (Até)</label>
+                <input type="date" name="data_fim" id="data_fim" class="form-control" value="{{ $dataFimSelecionada }}">
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
         </form>
 
         <table class="table table-striped table-hover" cellspacing="0" width="100%">
@@ -30,7 +65,7 @@
                     <th>Kg de Semente Por Hectar</th>
                     <th>Kg de Adubo Por Hectar</th>
                     <th>Data Início</th>
-                    <th>Ações</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -45,10 +80,7 @@
                         <td>{{ $x->Q_Semente_H }}</td>
                         <td>{{ $x->Q_Adubo_H }}</td>
                         <td>{{ $x->DataInicio }}</td>
-                        <td>
-                            <a href="/relatorios/editar/{{ $x->Autoid }}" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="/relatorios/excluir/{{ $x->Autoid }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este relatório?');">Excluir</a>
-                        </td>
+                    
                     </tr>
                 @endforeach
             @else

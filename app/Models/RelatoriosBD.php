@@ -4,54 +4,56 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class RelatoriosBD extends Model
 {
-    public function Relatorio($cultivo = null)
-{
-    $sqlSelect = "SELECT p.Autoid, t.nome as Talhao, TerrenoPlantado, p.Motivo, 
-        c.nome as Cultivo, p.Q_Semente_H, p.Q_Adubo_H, DATE_FORMAT(p.DataInicio, '%d/%m/%Y') AS DataInicio  
-        FROM plantio as p 
-        INNER JOIN talhao as t ON t.autoid = p.talhao
-        INNER JOIN cultivo as c ON c.autoid = p.cultivo";
-
-    if (!empty($cultivo)) {
-        $sqlSelect .= " WHERE c.nome LIKE :cultivo"; // Adiciona o filtro no SQL
-        $relatorios = DB::connection('mysql')->select($sqlSelect, ['cultivo' => '%' . $cultivo . '%']);
-    } else {
-        $relatorios = DB::connection('mysql')->select($sqlSelect);
-    }
-
-    return $relatorios;
-}
-
-    
-   /* public function find (string $autoid) 
+    // Método para listar cultivos com filtro opcional
+    public function relatorio($cultivo = null, $talhao = null, $dataInicio = null, $dataFim = null)
     {
-        if (!empty($autoid)){
-            $sqlSelect = "SELECT * FROM plantio WHERE Autoid = " . $autoid;    	
-            $relatorios = DB::connection('mysql')->select($sqlSelect);
-                
-            return $relatorios;//}
-    }
+        $sqlSelect = "SELECT p.Autoid, t.nome as Talhao, TerrenoPlantado, p.Motivo, 
+                      c.nome as Cultivo, p.Q_Semente_H, p.Q_Adubo_H, 
+                      DATE_FORMAT(p.DataInicio, '%d/%m/%Y') AS DataInicio  
+                      FROM plantio as p 
+                      INNER JOIN talhao as t ON t.autoid = p.talhao
+                      INNER JOIN cultivo as c ON c.autoid = p.cultivo
+                      WHERE 1=1";
 
-   public function salvar (Request $request) 
-    {
-        if(!empty($request->autoid)) {
-            $sqlUpdate = "Update plantio set talhao = '" . $request->talhao . "', TerrenoPlantado= '" . $request->terrenoplantado . "', Motivo = '" . $request->motivo ."',Cultivo = '" . $request->cultivo ."', Q_Semente_H = '" . $request->sementeporhectar . "', Q_Adubo_H = '" . $request->aduboporhectar . "', DataInicio = '" . $request->datainicio . "' Where AutoId = " . $request->autoid;					                              
-        } else {
-            $sqlUpdate = "INSERT INTO plantio (Talhao,TerrenoPlantado,Motivo,Cultivo,Q_Semente_H,Q_Adubo_H,DataInicio) VALUES ('".$request->talhao."', '".$request->terrenoplantado."', '".$request->motivo."', '".$request->cultivo."', '".$request->sementeporhectar."', '".$request->aduboporhectar."', '".$request->datainicio."')";
+        $params = [];
+
+        if (!empty($cultivo)) {
+            $sqlSelect .= " AND c.nome LIKE :cultivo";
+            $params['cultivo'] = '%' . $cultivo . '%';
         }
-        return DB::connection('mysql')->update($sqlUpdate);	
+
+        if (!empty($talhao)) {
+            $sqlSelect .= " AND t.nome LIKE :talhao";
+            $params['talhao'] = '%' . $talhao . '%';
+        }
+
+        if (!empty($dataInicio)) {
+            $sqlSelect .= " AND p.DataInicio >= :dataInicio";
+            $params['dataInicio'] = $dataInicio;
+        }
+
+        if (!empty($dataFim)) {
+            $sqlSelect .= " AND p.DataInicio <= :dataFim";
+            $params['dataFim'] = $dataFim;
+        }
+
+        return DB::connection('mysql')->select($sqlSelect, $params);
     }
 
-    public function remove (Request $request)
+    // Método para listar talhões disponíveis
+    public function listarTalhoes()
     {
-        if(!empty($request)) {					
-            $sqlUpdate = "Delete FROM plantio WHERE Autoid = ". $request->autoid;
-            return DB::connection('mysql')->update($sqlUpdate);					
-        }
-    }*/
+        $sqlSelect = "SELECT autoid, nome FROM talhao ORDER BY nome";
+        return DB::connection('mysql')->select($sqlSelect);
+    }
+
+    // Método para listar cultivos disponíveis
+    public function listarCultivos()
+    {
+        $sqlSelect = "SELECT autoid, nome FROM cultivo ORDER BY nome";
+        return DB::connection('mysql')->select($sqlSelect);
+    }
 }
-?>
