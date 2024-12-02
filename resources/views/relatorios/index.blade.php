@@ -57,14 +57,14 @@
         <table class="table table-striped table-hover" cellspacing="0" width="100%">
             <thead class="table-dark">
                 <tr>
-                    <th>AutoId</th>
-                    <th>Talhão</th>
-                    <th>Terreno Plantado</th>
-                    <th>Motivo</th>
-                    <th>Cultivo</th>
-                    <th>Kg de Semente Por Hectar</th>
-                    <th>Kg de Adubo Por Hectar</th>
-                    <th>Data Início</th>
+                    <th><div class="row"><div class="col-12 text-center">Talhao</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">Terreno <br>Plantado</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">Motivo</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">Cultivo</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">Kg de Semente <br>Por Hectar</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">Kg de Adubo <br>Por Hectar</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">Data Inicio</div></div></th>
+					
                     
                 </tr>
             </thead>
@@ -72,14 +72,13 @@
             @if (count($resultado) > 0)
                 @foreach($resultado as $x)
                     <tr>
-                        <td scope="row">{{ $x->Autoid }}</td>
-                        <td>{{ $x->Talhao }}</td>
-                        <td>{{ $x->TerrenoPlantado }}</td>
-                        <td>{{ $x->Motivo }}</td>
-                        <td>{{ $x->Cultivo }}</td>
-                        <td>{{ $x->Q_Semente_H }}</td>
-                        <td>{{ $x->Q_Adubo_H }}</td>
-                        <td>{{ $x->DataInicio }}</td>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->Talhao }}</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->TerrenoPlantado }}</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->Motivo }}</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->Cultivo }}</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->Q_Semente_H }}</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->Q_Adubo_H }}</div></div></th>
+					<th><div class="row"><div class="col-12 text-center">{{ $x->DataInicio }}</div></div></th>
                     
                     </tr>
                 @endforeach

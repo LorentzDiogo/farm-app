@@ -23,16 +23,16 @@
 			<table class="table table-striped table-hover" cellspacing="0" width="100%">
             <thead class="table-dark">
               	<tr >
-					<th>AutoId</th>
-					<th>Nome</th>
+					<th><div class="row"><div class="col-12 text-center">AutoId</div></div</th>
+					<th><div class="row"><div class="col-12 text-center">Nome</div></div</th>
 					<th><div class="row"><div class="col-12 text-center">Opções</div></div></th>
                	</tr>
             </thead>
             <tbody>
             @foreach($resultado as $x)
               	<tr>
-					<td scope="row">{{ $x->AutoId }}</td>
-					<td>{{ $x->Nome }}</td>
+					<td scope="row"><div class="row"><div class="col-12 text-center">{{ $x->AutoId }}</td>
+					<td><div class="row"><div class="col-12 text-center">{{ $x->Nome }}</div></div></td>
 					<td > 		
 						<div class="row">			
 							<div class="col-6 text-center">
