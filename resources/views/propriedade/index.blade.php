@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR"> 
     <head> 
     	<meta charset="utf-8">
@@ -10,7 +10,7 @@
 		<div class="container py-3">
   			<?php include './estrutura/menu.php' ?>
 			<div class="badge bg-light text-black text-center" style="width: 100%; height: 60px">
-				<h1><i>Manutenção Propriedades</i></h1>
+				<h1><i>Manutenção de Propriedades</i></h1>
 			</div>						
 			<br>					
 			<br>
@@ -22,33 +22,33 @@
 
 			<table class="table table-striped table-hover" cellspacing="0" width="100%">
             <thead class="table-dark">
-              	<tr >
-					<th><div class="row"><div class="col-12 text-center">Nome</div></div></th>
-					<th><div class="row"><div class="col-12 text-center">Endereco</div></div></th>
-					<th><div class="row"><div class="col-12 text-center">Opções</div></div></th>
+              	<tr>
+					<th class="text-center">Nome</th>
+					<th class="text-center">Endereço</th>
+					<th class="text-center">Opções</th>
                	</tr>
             </thead>
             <tbody>
             @foreach($resultado as $x)
-              	<tr>
-					<td><div class="row"><div class="col-12 text-center">{{ $x->Nome }}</div></div></td>
-					<td><div class="row"><div class="col-12 text-center">{{ $x->Endereco }}</div></div></td>
-					<td > 		
-						<div class="row">			
-							<div class="col-6 text-center">
-								<form action="/propriedade/remove" method="get">
-									<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->AutoId); ?>"> 
-									<button onclick="return confirm('Tem certeza que deseja deletar este registro?')" type="submit" class="btn btn-danger">Excluir</button> 
-								</form>
-							</div>
-							<div class="col-6">
-								<form action="/propriedade/cadastro" method="get"> 
-									<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->AutoId); ?>">
-									<button type="submit" class="btn btn-warning">Alterar</button> 
-								</form>							
-							</div>
-						</div>
-					</td>		   
+              	<tr class="text-center align-middle">
+					<td>{{ $x->Nome }}</td>
+					<td>{{ $x->Endereco }}</td>
+					<td>
+    					<div class="d-flex justify-content-center gap-2">
+        					<form action="/propriedade/remove" method="get">
+            					<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->AutoId); ?>">
+            					<button onclick="return confirm('Tem certeza que deseja deletar este registro?')" type="submit" class="btn btn-danger">
+               						Excluir
+            					</button>
+        					</form>
+        					<form action="/propriedade/cadastro" method="get">
+            					<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->AutoId); ?>">
+            					<button type="submit" class="btn btn-warning">
+            				    	Alterar
+            					</button>
+        					</form>
+    					</div>
+					</td>
               	</tr>
             @endforeach
             </tbody>
@@ -57,3 +57,4 @@
 		</div>
 	</body> 
 </html>
+

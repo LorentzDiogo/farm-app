@@ -45,23 +45,27 @@
 					<th><div class="row"><div class="col-12 text-center">{{ $x->Q_Semente_H }}</div></div></th>
 					<th><div class="row"><div class="col-12 text-center">{{ $x->Q_Adubo_H }}</div></div></th>
 					<th><div class="row"><div class="col-12 text-center">{{ $x->DataInicio }}</div></div></th>		
-					<td > 		
-						<div class="row">			
-							<div class="col-6 text-center">
-								<form action="/plantio/remove" method="get">
-									<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->Autoid); ?>"> 
-									<button onclick="return confirm('Tem certeza que deseja deletar este registro?')" type="submit" class="btn btn-danger">Excluir</button> 
-								</form>
-							</div>
-							<div class="col-6">
-								<form action="/plantio/cadastro" method="get"> 
-									<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->Autoid); ?>">
-									<button type="submit" class="btn btn-warning">Alterar</button> 
-								</form>							
-							</div>
-						</div>
-					</td>		   
-              	</tr>
+							   
+					<td>
+    					<div class="d-flex justify-content-center gap-2 mt-2">
+        					<form action="/propriedade/remove" method="get">
+            					<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->Autoid); ?>">
+            					<button onclick="return confirm('Tem certeza que deseja deletar este registro?')" type="submit" class="btn btn-danger">
+               						Excluir
+            				</button>
+        					</form>
+        					<form action="/propriedade/cadastro" method="get">
+            					<input type="hidden" id="autoid" name="autoid" value="<?php echo($x->Autoid); ?>">
+            					<button type="submit" class="btn btn-warning">
+            				    	Alterar
+            					</button>
+        					</form>
+    					</div>
+					</td>
+				
+				
+				
+				</tr>
             @endforeach
             </tbody>
         </table> 
