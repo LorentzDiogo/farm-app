@@ -7,9 +7,16 @@ use App\Http\Controllers\TalhaoController;
 use App\Http\Controllers\CultivoController;
 use App\Http\Controllers\PlantioController;
 use App\Http\Controllers\RelatoriosController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('auth')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('usuario')->group(function () {
